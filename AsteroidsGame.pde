@@ -1,15 +1,44 @@
-//your variable declarations here
+SpaceShip HarryPotter;
 public void setup() 
 {
-  //your code here
+  size(500,500);
+  HarryPotter= new SpaceShip();
 }
 public void draw() 
 {
-  //your code here
+ HarryPotter.move();
+ HarryPotter.show();
 }
-class SpaceShip //extends Floater  
-{   
-    //your code here
+class SpaceShip extends Floater  
+{  
+  public SpaceShip() {
+    corners = 3;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -10;
+    yCorners[0] = -10;
+    xCorners[1] = 20;
+    yCorners[1] = 0;
+    xCorners[2] = -10;
+    yCorners[2] = 10;
+
+    myColor
+    myCenterX
+    myCenterY
+    myDirectionX
+    myDirectionY
+    myPointDirection
+  }
+  public void setX(int x){myCenterX=x;}  
+  public int getX(){return (int)myCenterX;}  
+  public void setY(int y){myCenterY=y;}   
+  public int getY(){return (int)myCenterY;}   
+  public void setDirectionX(double x){myDirectionX=x;}    
+  public double getDirectionX(){return (int)myDirectionX;}   
+  public void setDirectionY(double y){myDirectionY=y;}  
+  public double getDirectionY(){return (int)myDirectionY;} 
+  public void setPointDirection(int degrees){myPointDirection=degrees;}  
+  public double getPointDirection(){return myPointDirection;} 
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -30,6 +59,26 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   abstract public double getDirectionY();   
   abstract public void setPointDirection(int degrees);   
   abstract public double getPointDirection(); 
+
+  // void keyPressed() {
+  //   if (keyCode == UP) {
+
+
+  //   }
+
+  //   else if () {
+
+  //   }
+  //   else if () {
+      
+  //   }
+  //   else if () {
+      
+  //   }
+  //   else if () {
+      
+  //   }
+  // }
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
