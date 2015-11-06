@@ -1,14 +1,31 @@
 SpaceShip HarryPotter;
 public void setup() 
-{
+{ background(0);
   size(500,500);
   HarryPotter= new SpaceShip();
 }
 public void draw() 
-{
+{ background(0);
  HarryPotter.move();
  HarryPotter.show();
 }
+ public void keyPressed() {
+    if (keyCode == UP) {
+      HarryPotter.accelerate(0.3);
+    }
+
+    else if (keyCode == LEFT) {
+      HarryPotter.rotate(-15);
+    }
+    else if (keyCode == RIGHT) {
+      HarryPotter.rotate(15);
+    }
+    else if (keyCode == DOWN) {
+      HarryPotter.hyperspace();
+      
+    }
+  
+  }
 class SpaceShip extends Floater  
 {  
   public SpaceShip() {
@@ -22,12 +39,12 @@ class SpaceShip extends Floater
     xCorners[2] = -10;
     yCorners[2] = 10;
 
-    myColor
-    myCenterX
-    myCenterY
-    myDirectionX
-    myDirectionY
-    myPointDirection
+    myColor = (255);
+    myCenterX = (250);
+    myCenterY = (250);
+    myDirectionX = (0);
+    myDirectionY = (0);
+    myPointDirection = (0);
   }
   public void setX(int x){myCenterX=x;}  
   public int getX(){return (int)myCenterX;}  
@@ -39,7 +56,20 @@ class SpaceShip extends Floater
   public double getDirectionY(){return (int)myDirectionY;} 
   public void setPointDirection(int degrees){myPointDirection=degrees;}  
   public double getPointDirection(){return myPointDirection;} 
+
+  public void hyperspace()
+{
+  setX((int)(Math.random()*501)+1);
+  setY((int)(Math.random()*501)+1);
+  setDirectionX(0);
+  setDirectionY(0);
+  setPointDirection((int)(Math.random()*361)+1);
+
 }
+
+}
+
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -60,25 +90,6 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   abstract public void setPointDirection(int degrees);   
   abstract public double getPointDirection(); 
 
-  // void keyPressed() {
-  //   if (keyCode == UP) {
-
-
-  //   }
-
-  //   else if () {
-
-  //   }
-  //   else if () {
-      
-  //   }
-  //   else if () {
-      
-  //   }
-  //   else if () {
-      
-  //   }
-  // }
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
