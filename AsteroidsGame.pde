@@ -1,13 +1,29 @@
 SpaceShip HarryPotter;
+
+Star[] stars;
+
 public void setup() 
 { background(0);
   size(500,500);
   HarryPotter= new SpaceShip();
+
+  stars = new Star[1000];
+  for (int i = 0; i<1000; i++)
+  {
+      stars[i] = new Star();
+  }
+
 }
 public void draw() 
 { background(0);
  HarryPotter.move();
  HarryPotter.show();
+
+for (int i = 0; i<1000; i++)
+  {
+      stars[i].show();
+  }
+
 }
  public void keyPressed() {
     if (keyCode == UP) {
@@ -147,4 +163,22 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
+
+public class Star
+{  private int posX, posY, mySize;
+
+    public Star() {
+    posX=((int)(Math.random()*501)+1);
+    posY=((int)(Math.random()*501)+1);
+    mySize=((int)(Math.random()*5)+1);
+
+  }
+
+  public void show() {
+    noStroke();
+    fill(178,212,255);
+    ellipse(posX,posY,mySize,mySize);
+  }
+}
+
 
