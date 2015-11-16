@@ -1,5 +1,5 @@
 SpaceShip HarryPotter;
-
+Asteroids[] manyAsteroids;
 Star[] stars;
 
 public void setup() 
@@ -13,6 +13,12 @@ public void setup()
       stars[i] = new Star();
   }
 
+  manyAsteroids = new Asteroids[20];
+  for (int i = 0; i<20; i++)
+  {
+    manyAsteroids[i] = new Asteroids();
+  }
+
 }
 public void draw() 
 { background(0);
@@ -22,6 +28,10 @@ public void draw()
 for (int i = 0; i<1000; i++)
   {
       stars[i].show();
+  }
+   for (int i = 0; i<20; i++)
+  {
+    manyAsteroids[i].show();
   }
 
 }
@@ -42,6 +52,15 @@ for (int i = 0; i<1000; i++)
     }
   
   }
+
+class Asteroids extends Floater 
+{
+
+  public Asteroids() {
+    
+  }
+}
+
 class SpaceShip extends Floater  
 {  
   public SpaceShip() {
