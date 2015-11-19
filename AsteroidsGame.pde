@@ -1,5 +1,5 @@
 SpaceShip HarryPotter;
-Asteroids[] manyAsteroids;
+// Asteroids[] manyAsteroids;
 Star[] stars;
 
 public void setup() 
@@ -13,11 +13,11 @@ public void setup()
       stars[i] = new Star();
   }
 
-  manyAsteroids = new Asteroids[20];
-  for (int i = 0; i<20; i++)
-  {
-    manyAsteroids[i] = new Asteroids();
-  }
+  // manyAsteroids = new Asteroids[20];
+  // for (int i = 0; i<20; i++)
+  // {
+  //   manyAsteroids[i] = new Asteroids();
+  // }
 
 }
 public void draw() 
@@ -29,10 +29,10 @@ for (int i = 0; i<1000; i++)
   {
       stars[i].show();
   }
-   for (int i = 0; i<20; i++)
-  {
-    manyAsteroids[i].show();
-  }
+  //  for (int i = 0; i<20; i++)
+  // {
+  //   manyAsteroids[i].show();
+  // }
 
 }
  public void keyPressed() {
@@ -53,13 +53,53 @@ for (int i = 0; i<1000; i++)
   
   }
 
-class Asteroids extends Floater 
-{
+class Asteroid extends Floater 
+{  private int speedofRot;
 
-  public Asteroids() {
-    
+    public Asteroid()
+    {
+    corners = 6;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -11;
+    yCorners[0] = -8;
+    xCorners[1] = 7;
+    yCorners[1] = -8;
+    xCorners[2] = 13;
+    yCorners[2] = 0;
+    xCorners[3] = 6;
+    yCorners[3] = 10;
+    xCorners[4] = -11;
+    yCorners[4] = 8;
+    xCorners[5] = -5;
+    yCorners[5] = 0;
+    myColor = color(0, 0, 255, 100);
+    myCenterX = 0;
+    myCenterY = Math.random()*height;
+    myDirectionX = (Math.random()*3)-1.5;
+    myDirectionY = (Math.random()*3)-1.5;
+    myPointDirection = Math.random()*360;
+   speedofRot = ((int)(Math.random()*6)-3);
   }
+
+  public void move() { //Same move but with rotate. 
+    rotate((int)speedofRot);
+    super.move();
+  }
+   public void setX(int x){myCenterX=x;}  
+  public int getX(){return (int)myCenterX;}  
+  public void setY(int y){myCenterY=y;}   
+  public int getY(){return (int)myCenterY;}   
+  public void setDirectionX(double x){myDirectionX=x;}    
+  public double getDirectionX(){return (int)myDirectionX;}   
+  public void setDirectionY(double y){myDirectionY=y;}  
+  public double getDirectionY(){return (int)myDirectionY;} 
+  public void setPointDirection(int degrees){myPointDirection=degrees;}  
+  public double getPointDirection(){return myPointDirection;} 
 }
+
+
+
 
 class SpaceShip extends Floater  
 {  
