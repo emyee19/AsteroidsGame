@@ -1,5 +1,5 @@
 SpaceShip HarryPotter;
-// Asteroids[] manyAsteroids;
+ArrayList <Asteroid> asteroids;
 Star[] stars;
 
 public void setup() 
@@ -12,12 +12,13 @@ public void setup()
   {
       stars[i] = new Star();
   }
+  
+  asteroids = new ArrayList <Asteroid>();
+  for (int i = 0; i<20; i++)
+  {
+        asteroids.add(new Asteroid());
+  }
 
-  // manyAsteroids = new Asteroids[20];
-  // for (int i = 0; i<20; i++)
-  // {
-  //   manyAsteroids[i] = new Asteroids();
-  // }
 
 }
 public void draw() 
@@ -29,10 +30,11 @@ for (int i = 0; i<1000; i++)
   {
       stars[i].show();
   }
-  //  for (int i = 0; i<20; i++)
-  // {
-  //   manyAsteroids[i].show();
-  // }
+for (int i = 0; i < asteroids.size(); i++)
+    {
+      asteroids.get(i).move();
+      asteroids.get(i).show();
+    }
 
 }
  public void keyPressed() {
@@ -73,7 +75,7 @@ class Asteroid extends Floater
     yCorners[4] = 8;
     xCorners[5] = -5;
     yCorners[5] = 0;
-    myColor = color(0, 0, 255, 100);
+    myColor = color(132, 42, 42, 200);
     myCenterX = 0;
     myCenterY = Math.random()*height;
     myDirectionX = (Math.random()*3)-1.5;
