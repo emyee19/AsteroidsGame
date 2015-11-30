@@ -34,6 +34,8 @@ for (int i = 0; i < asteroids.size(); i++)
     {
       asteroids.get(i).move();
       asteroids.get(i).show();
+      if ((dist(HarryPotter.getX(), HarryPotter.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20))
+        asteroids.remove(i);
     }
 
 }
@@ -55,7 +57,8 @@ for (int i = 0; i < asteroids.size(); i++)
   
   }
 
-class Asteroid extends Floater 
+class Asteroid extends Floater //Use processing's dist() function to find the distance between that asteroid and the ship. 
+//If the distance is less than 20 remove the asteroid from the ArrayList. Otherwise, move and rotate the asteroid normally
 {  private int speedofRot;
 
     public Asteroid()
