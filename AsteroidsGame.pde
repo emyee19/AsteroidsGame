@@ -1,5 +1,6 @@
 SpaceShip HarryPotter;
 ArrayList <Asteroid> asteroids;
+ArrayList <Bullet> bullets;
 Star[] stars;
 
 public void setup() 
@@ -19,6 +20,8 @@ public void setup()
         asteroids.add(new Asteroid());
   }
 
+  bullets = new ArrayList <Bullet>();
+
 
 }
 public void draw() 
@@ -37,7 +40,13 @@ for (int i = 0; i < asteroids.size(); i++)
       if ((dist(HarryPotter.getX(), HarryPotter.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20))
         asteroids.remove(i);
     }
+for (int i = 0; i < bullets.size(); i++)
+  {
+    bullets.get(i).move();
+    bullets.get(i).show();
 
+
+  }
 }
  public void keyPressed() {
     if (keyCode == UP) {
@@ -53,6 +62,9 @@ for (int i = 0; i < asteroids.size(); i++)
     else if (keyCode == DOWN) {
       HarryPotter.hyperspace();
       
+    }
+    else if (key == "a") {
+      bullets.add(new Bullet());
     }
   
   }
@@ -103,6 +115,47 @@ class Asteroid extends Floater //Use processing's dist() function to find the di
   public double getPointDirection(){return myPointDirection;} 
 }
 
+class Bullet extends FLoater 
+{
+    public Bullet(SpaceShip the ship) {
+    myCenterX = theship.getX();
+    myCenterY = theship.getY();
+    myPointDirection = theship.getPointDirection();
+    double dRadians = myPointDirection*(Math.PI/180);   
+    myDirectionX = 5 * Math.cos(dRadians) + theship.getDirectionX();
+    myDirectionY =  5 * Math.sin(dRadians) + theship.getDirectionY();
+    }
+  public void setX(int x){myCenterX=x;}  
+  public int getX(){return (int)myCenterX;}  
+  public void setY(int y){myCenterY=y;}   
+  public int getY(){return (int)myCenterY;}   
+  public void setDirectionX(double x){myDirectionX=x;}    
+  public double getDirectionX(){return (int)myDirectionX;}   
+  public void setDirectionY(double y){myDirectionY=y;}  
+  public double getDirectionY(){return (int)myDirectionY;} 
+  public void setPointDirection(int degrees){myPointDirection=degrees;}  
+  public double getPointDirection(){return myPointDirection;} 
+
+    public void move() {
+
+    
+    //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX += 5*myDirectionX;
+    myCenterY += 5*myDirectionY;
+  
+    }
+
+    public void show() {
+    noFill();
+    stroke(205);
+    //convert degrees to radians for sin and cos
+    double dRadians = myPointDirection*(Math.PI/180);
+    ellipse(myCenterX, myCenterY, 5,5);
+    }
+
+
+
+}
 
 
 
@@ -125,7 +178,10 @@ class SpaceShip extends Floater
     myDirectionX = (0);
     myDirectionY = (0);
     myPointDirection = (0);
-  }
+    }
+
+
+
   public void setX(int x){myCenterX=x;}  
   public int getX(){return (int)myCenterX;}  
   public void setY(int y){myCenterY=y;}   
@@ -138,14 +194,14 @@ class SpaceShip extends Floater
   public double getPointDirection(){return myPointDirection;} 
 
   public void hyperspace()
-{
+  {
   setX((int)(Math.random()*501)+1);
   setY((int)(Math.random()*501)+1);
   setDirectionX(0);
   setDirectionY(0);
   setPointDirection((int)(Math.random()*361)+1);
 
-}
+  }
 
 }
 
