@@ -44,6 +44,9 @@ for (int i = 0; i < bullets.size(); i++)
   {
     bullets.get(i).move();
     bullets.get(i).show();
+    if ((dist(bullets.getX(), bullets.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20))
+      bullets.remove(i);
+      asteroids.remove(i);
 
 
   }
@@ -63,9 +66,11 @@ for (int i = 0; i < bullets.size(); i++)
       HarryPotter.hyperspace();
       
     }
-    else if (key == "a") {
-      bullets.add(new Bullet());
-    }
+    else if (key == 'a') //shoot
+  {
+    bullets.add(new Bullet(HarryPotter));
+  }
+
   
   }
 
@@ -115,9 +120,9 @@ class Asteroid extends Floater //Use processing's dist() function to find the di
   public double getPointDirection(){return myPointDirection;} 
 }
 
-class Bullet extends FLoater 
+class Bullet extends Floater 
 {
-    public Bullet(SpaceShip the ship) {
+    public Bullet(SpaceShip theship) {
     myCenterX = theship.getX();
     myCenterY = theship.getY();
     myPointDirection = theship.getPointDirection();
@@ -150,7 +155,7 @@ class Bullet extends FLoater
     stroke(205);
     //convert degrees to radians for sin and cos
     double dRadians = myPointDirection*(Math.PI/180);
-    ellipse(myCenterX, myCenterY, 5,5);
+    ellipse((float)myCenterX, (float)myCenterY, 5,5);
     }
 
 
