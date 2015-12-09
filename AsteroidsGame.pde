@@ -5,7 +5,7 @@ Star[] stars;
 
 public void setup() 
 { background(0);
-  size(500,500);
+  size(500,500, P2D);
   HarryPotter= new SpaceShip();
 
   stars = new Star[1000];
@@ -33,24 +33,31 @@ for (int i = 0; i<1000; i++)
   {
       stars[i].show();
   }
-for (int i = 0; i < asteroids.size(); i++)
-    {
+
+for (int i = 0; i < asteroids.size(); i++) 
+{
       asteroids.get(i).move();
       asteroids.get(i).show();
-      if ((dist(HarryPotter.getX(), HarryPotter.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20))
-        asteroids.remove(i);
-    }
-for (int i = 0; i < bullets.size(); i++)
-  {
-    bullets.get(i).move();
-    bullets.get(i).show();
-    if ((dist(bullets.getX(), bullets.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20))
-      bullets.remove(i);
+      // if ((dist(HarryPotter.getX(), HarryPotter.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20))
+      //   asteroids.remove(i);
+  
+  for (int a = 0; a < bullets.size(); a++)
+  {                                              
+    bullets.get(a).move();
+    bullets.get(a).show();
+    if ((dist(bullets.get(a).getX(), bullets.get(a).getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20))
+    
+    {
+      bullets.remove(a);
       asteroids.remove(i);
+      break;
+    }
+  }                            
 
-
-  }
 }
+
+}
+
  public void keyPressed() {
     if (keyCode == UP) {
       HarryPotter.accelerate(0.3);
