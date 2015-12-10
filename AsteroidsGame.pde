@@ -33,7 +33,11 @@ for (int i = 0; i<1000; i++)
   {
       stars[i].show();
   }
-
+    for (int a = 0; a < bullets.size(); a++)
+  {                                              
+    bullets.get(a).move();
+    bullets.get(a).show();
+}
 for (int i = 0; i < asteroids.size(); i++) 
 {
       asteroids.get(i).move();
@@ -43,8 +47,7 @@ for (int i = 0; i < asteroids.size(); i++)
   
   for (int a = 0; a < bullets.size(); a++)
   {                                              
-    bullets.get(a).move();
-    bullets.get(a).show();
+
     if ((dist(bullets.get(a).getX(), bullets.get(a).getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20))
     
     {
